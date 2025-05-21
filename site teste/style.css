@@ -1,0 +1,113 @@
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+   
+}
+
+.h-main {
+    display: flex;
+    align-items: center;
+
+}
+
+.logo-main {
+    width: 20vw;
+}
+
+.search-bar {
+    width: 40vw;
+}
+
+.icons-section {
+    width: 40vw;
+}
+
+.logo-main img {
+    width: 160px;
+    height: 120px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: rgb(236, 234, 234);
+    border-radius: 20px;
+   
+}
+
+.search-bar input {
+    background-color: rgb(236, 234, 234);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    width: 40vw;
+    height: 6vh;
+    margin-left: 15px;
+}
+
+.lupa {
+    margin-right: 10px;
+}
+
+.user-main {
+    display: flex;
+    align-items: center;
+}
+
+.user {
+
+    margin-left: 10vh;
+}
+
+svg {
+    color: rgb(6, 104, 150);
+}
+
+.icons-section {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.icons-section p{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+
+.h-sub {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.h-sub svg {
+    margin-left: 10px;
+}
+
+.h-sub p {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.sub-section {
+    display: flex;
+    align-items: center;
+  
+}
+
+.c {
+    color: grey;
+}
+
+.order-by p {
+    font-size: 12px;
+}
+
+
+
