@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encontre uma farmácia VitaPharma</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos principais da página -->
+  <style>
+    /* reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.5;
+      background: #f7f7f7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* cabeçalho com logo, busca e ícones de usuário */
+    .header {
+      background: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2a9df4;
+    }
+
+    .header .search-bar {
+      flex: 1;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .header .search-bar input {
+      width: 100%;
+      padding: 8px 40px 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .header .search-bar .icon-search {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: #888;
+    }
+
+    .header .user-actions {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* barra de navegação abaixo do header */
+    .nav-secondary {
+      background: #fff;
+      padding: 8px 20px;
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav-secondary a,
+    .nav-secondary button {
+      color: #555;
+      padding: 6px 10px;
+    }
+
+    .nav-secondary button {
+      background: #2a9df4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* seção principal de banner + mapa + imagem */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 20px;
+      background: #fff;
+    }
+
+    .hero .hero-text {
+      max-width: 50%;
+    }
+
+    .hero .hero-text h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero .hero-text p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .hero .hero-image {
+      position: relative;
+      max-width: 45%;
+      text-align: right;
+    }
+
+    .hero .hero-image img.mapa {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .hero .hero-image img.pessoa {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
+    /* formulário de busca de farmácias */
+    .search-form {
+      background: #fff;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .search-form h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .search-form p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .search-form .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .search-form .form-group {
+      flex: 1;
+      min-width: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-form .form-group label {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .search-form .form-group input,
+    .search-form .form-group select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .search-form .btn-search {
+      align-self: flex-end;
+      padding: 10px 20px;
+      background: #2a9df4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 22px;
+    }
+    .mapa{
+        padding: 50px;
+    }
+    .pessoa{
+        height: 500px;
+        width: 600px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="h-main">
+            <div class="logo-main">
+            <img src="logo.png">
+            </div>
+            <div class="search-bar">
+            <input type="search" placeholder="O que você está procurando?">
+            <svg style="color:black" class="lupa" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </div>
+            <div class="icons-section">
+            <div class="user-main">
+            <svg class="user" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+              </svg>
+              <p>Boas-vindas!<br>
+                <strong><a href="login.html">Entrar ou cadastrar</a> </strong>    
+            </p>
+            </div>
+
+            <div class="user-main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                  </svg>
+                  <p>Acompanhar<br>
+                    <strong>Pedidos</strong>    
+                </p>
+                </div>
+
+                <div class="user-main">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                      </svg>
+                      <p>Cesta<br>
+                        <strong>R$0,00</strong>    
+                    </p>
+                    </div>
+            </div>
+            </div>
+        </header>
+
+  <!-- Seção hero: título, descrição e imagens -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Encontre uma VitaPharma mais próxima de você</h1>
+      <p>Encontre a loja mais próxima e experimente o compromisso da VitaPharma com a sua saúde.</p>
+    </div>
+    <div class="hero-image">
+      <!-- mapa com pins -->
+      <img class="mapa" src="imagens/mpbrazil.jpg" alt="Mapa do Brasil com localizações">
+    
+    </div>
+  </section>
+
+  <!-- Formulário de busca avançada -->
+  <section class="search-form">
+    <h2>Escolher Farmácia</h2>
+    <p>Encontre as unidades próximas a você disponíveis buscando por CEP ou escolha outros filtros para uma busca mais refinada.</p>
+
+    <div class="form-row">
+      <!-- Grupo de CEP -->
+      <div class="form-group">
+        <label for="cep">Digite o CEP</label>
+        <input type="text" id="cep" placeholder="Digite o CEP">
+      </div>
+
+      <!-- Grupo de Loja Aberta -->
+      <div class="form-group">
+        <label for="loja-aberta">Loja Aberta</label>
+        <select id="loja-aberta">
+          <option value="">Selecione</option>
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <!-- Grupo de Serviços -->
+      <div class="form-group">
+        <label for="servicos">Serviços</label>
+        <select id="servicos">
+          <option value="">Selecione</option>
+          <option value="vacina">Vacina</option>
+          <option value="consulta">Consulta</option>
+          <!-- mais opções -->
+        </select>
+      </div>
+
+      <!-- Grupo de Estado -->
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <select id="estado">
+          <option value="">- Selecione -</option>
+          <option value="sp">São Paulo</option>
+          <option value="rj">Rio de Janeiro</option>
+          <!-- mais estados -->
+        </select>
+      </div>
+
+      <!-- Grupo de Cidade -->
+      <div class="form-group">
+        <label for="cidade">Cidade</label>
+        <select id="cidade">
+          <option value="">Selecione</option>
+          <!-- cidades carregadas dinamicamente -->
+        </select>
+      </div>
+
+      <!-- Botão de buscar -->
+      <button class="btn-search">BUSCAR</button>
+    </div>
+  </section>
+
+</body>
+</html>

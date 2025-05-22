@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - vitaPharma</title>
+  <link rel="stylesheet" href="tela.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  height: 100px;
+
+}
+
+.top-right span {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+ 
+}
+
+.login-form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-form input {
+  padding: 12px;
+  margin-bottom: 20px;
+  background: #e6e6e6;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+}
+
+.btn-login {
+  background-color: #1d6bb3;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.forgot-password {
+  font-size: 14px;
+  text-align: center;
+  text-decoration: underline;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.divider {
+  margin: 20px 0;
+}
+
+.login-alternatives {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.social-buttons button {
+  flex: 1;
+  padding: 12px;
+  margin: 0 5px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  background: white;
+  cursor: pointer;
+}
+
+.signup {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+#showPassword {
+  cursor: pointer;
+  margin-left: 5px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="icons/pn.png" alt="VitaPharma" class="logo"></a>
+    <div class="top-right">
+      <span>Central de atendimento</span>
+    </div>
+  </header>
+
+  <main class="login-container">
+    <form class="login-form">
+      <label for="email">E-mail ou CPF</label>
+      <input type="text" id="email" placeholder="Digite seu e-mail ou CPF">
+
+      <label for="senha">Senha</label>
+      <div class="password-wrapper">
+<input type="password" id="senha" name="senha">
+
+        
+      </div>
+
+      <button type="submit" class="btn-login">Entrar</button>
+      <a href="#" class="forgot-password">Esqueci a senha</a>
+      
+
+      <hr class="divider">
+      <p class="login-alternatives">Entrar com </p>     
+
+      <div class="social-buttons">
+      <button class="google">google+</button></a>
+      
+      </div>
+
+      <p class="signup">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </form>
+  </main>
+
+</body>
+</html>

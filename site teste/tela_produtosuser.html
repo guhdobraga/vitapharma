@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medicamentos – Drogasil Clone</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+    /* styles.css */
+
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* LAYOUT GERAL */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #f9f9f9;
+}
+
+/* CONTAINER CENTRAL */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.logo img {
+  height: 80px;
+}
+.search-form {
+  flex: 1;
+  margin: 0 1rem;
+  display: flex;
+}
+.search-form input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-right: none;
+}
+.search-form button {
+  padding: 0 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+.user-nav a {
+  margin-left: 1rem;
+  color: #1d6bb3;
+  text-decoration: none;
+}
+
+/* TÍTULO E PAGINAÇÃO */
+.page-header {
+  padding: 2rem 0 1rem;
+}
+.page-header h1 {
+  font-size: 2rem;
+  color: #1d6bb3;
+  margin-bottom: 0.5rem;
+}
+.page-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.page-controls span,
+.page-controls label {
+  margin-right: 1.5rem;
+}
+.pagination {
+  list-style: none;
+  display: flex;
+}
+.pagination li {
+  margin-right: 0.5rem;
+}
+.pagination a,
+.pagination span {
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  color: #333;
+}
+.pagination a.next {
+  background: #ddd;
+}
+
+/* CONTENT: SIDEBAR + GRID */
+.content {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex: 0 0 200px;
+}
+.filter {
+  background: #fff;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.filter-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 0.8rem;
+  background: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.filter ul {
+  list-style: none;
+  padding: 0.5rem;
+}
+.filter li {
+  margin-bottom: 0.5rem;
+}
+.see-more a {
+  color: #1d6bb3;
+  text-decoration: none;
+}
+
+/* GRID DE PRODUTOS */
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  border-radius: 8px;
+}
+.product-card .badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #d67d00;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.product-card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.product-card .volume {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.8rem;
+}
+.pricing span {
+  display: block;
+  font-size: 0.9rem;
+}
+.bulk {
+  color: #1d6bb3;
+  font-weight: bold;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+.promo-price {
+  font-weight: bold;
+  color: #1d6bb3;
+}
+.discount {
+  font-size: 0.8rem;
+  background: #1d6bb3;
+  color: #fff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin-top: 0.3rem;
+}
+.buy-btn {
+  margin-top: 0.8rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #1d6bb3;
+  background: #fff;
+  color: #1d6bb3;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.buy-btn:hover {
+  background: #1d6bb3;
+  color: #fff;
+}
+
+</style>  
+</head>
+<body>
+  <header class="h-main">
+            <div class="logo-main">
+            <img src="logo.png">
+            </div>
+            <div class="search-bar">
+            <input type="search" placeholder="O que você está procurando?">
+            <svg style="color:black" class="lupa" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </div>
+            <div class="icons-section">
+            <div class="user-main">
+            <svg class="user" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+              </svg>
+              <p>Boas-vindas!<br>
+                <strong><a href="login.html">Entrar ou cadastrar</a> </strong>    
+            </p>
+            </div>
+
+            <div class="user-main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                  </svg>
+                  <p>Acompanhar<br>
+                    <strong>Pedidos</strong>    
+                </p>
+                </div>
+
+                <div class="user-main">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                      </svg>
+                      <p>Cesta<br>
+                        <strong>R$0,00</strong>    
+                    </p>
+                    </div>
+            </div>
+            </div>
+        </header>
+
+  <!-- MAIN: título, paginação e layout de filtro + grid de produtos -->
+  <main class="container">
+    <!-- Título e controles de paginação -->
+    <section class="page-header">
+      <h1>Medicamentos</h1>
+      <div class="page-controls">
+        <span>200 produtos encontrados</span>
+        <label>
+          Itens por página
+          <select>
+            <option>48</option>
+            <option>24</option>
+          </select>
+        </label>
+        <ul class="pagination">
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><span>...</span></li>
+          <li><a href="#">1048</a></li>
+          <li><a href="#" class="next">Próximo</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="content">
+      <!-- SIDEBAR: filtros por marca e aroma/sabor -->
+      <aside class="sidebar">
+        <div class="filter">
+          <button class="filter-toggle">Marca ▾</button>
+          <ul>
+            <li><label><input type="checkbox" /> IBJ [14]</label></li>
+            <li><label><input type="checkbox" /> To Use [10]</label></li>
+            <li><label><input type="checkbox" /> Viscot [20]</label></li>
+            <li><label><input type="checkbox" /> &amp;Fácil [24]</label></li>
+            <li><label><input type="checkbox" /> 100 Foods [1]</label></li>
+            <li class="see-more"><a href="#">ver mais</a></li>
+          </ul>
+        </div>
+        <div class="filter">
+          <button class="filter-toggle">Aroma e Sabor ▾</button>
+          <ul>
+            <li><label><input type="checkbox" /> Limão [1]</label></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- GRID DE PRODUTOS -->
+      <section class="products-grid">
+        <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="badge">Leve + Pague –</div>
+          <img src="imagens/amoxilina.jpeg" alt="amoxilina" />
+          <h2>amoxilina</h2>
+          <p class="volume">500ml</p>
+          <div class="pricing">
+            <span>1 Un. R$ 7,19</span>
+            <span class="bulk">6 Un. R$ 5,99 cada</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <img src="imagens/Diclofenaco.jpeg" alt="diclofenaco" />
+          <h2>Diclofenaco</h2>
+          <p class="volume">30 Comprimidos Revestidos</p>
+          <div class="pricing">
+            <span>1 Un. R$ 18,94</span>
+            <span class="bulk">2 Un. R$ 9,47 cada</span>
+            <span class="bulk">Leve mais pague menos</span>
+            <span class="bulk">So hoje</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <img src="imagens/Loratadina.jpeg" alt="Loratadina" />
+          <h2>Loratadina</h2>
+          <p class="volume">12 Comprimidos</p>
+          <div class="pricing">
+            <span class="old-price">R$ 21,04</span>
+            <span class="promo-price">R$ 3,49</span>
+            <span class="discount">-83%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card">
+          <img src="imagens/ibuprofeno.jpeg" alt="ibuprofeno" />
+          <h2>Ibuprofeno</h2>
+          <p class="volume">1 un</p>
+          <div class="pricing">
+            <span class="old-price">R$ 54,90</span>
+            <span class="promo-price">R$ 39,90</span>
+            <span class="discount">-27%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+           <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="badge">Leve + Pague –</div>
+          <img src="imagens/amoxilina.jpeg" alt="amoxilina" />
+          <h2>amoxilina</h2>
+          <p class="volume">500ml</p>
+          <div class="pricing">
+            <span>1 Un. R$ 7,19</span>
+            <span class="bulk">6 Un. R$ 5,99 cada</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <img src="imagens/Diclofenaco.jpeg" alt="diclofenaco" />
+          <h2>Diclofenaco</h2>
+          <p class="volume">30 Comprimidos Revestidos</p>
+          <div class="pricing">
+            <span>1 Un. R$ 18,94</span>
+            <span class="bulk">2 Un. R$ 9,47 cada</span>
+            <span class="bulk">Leve mais pague menos</span>
+            <span class="bulk">So hoje</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <img src="imagens/Loratadina.jpeg" alt="Loratadina" />
+          <h2>Loratadina</h2>
+          <p class="volume">12 Comprimidos</p>
+          <div class="pricing">
+            <span class="old-price">R$ 21,04</span>
+            <span class="promo-price">R$ 3,49</span>
+            <span class="discount">-83%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card">
+          <img src="imagens/ibuprofeno.jpeg" alt="ibuprofeno" />
+          <h2>Ibuprofeno</h2>
+          <p class="volume">1 un</p>
+          <div class="pricing">
+            <span class="old-price">R$ 54,90</span>
+            <span class="promo-price">R$ 39,90</span>
+            <span class="discount">-27%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+           <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="badge">Leve + Pague –</div>
+          <img src="imagens/amoxilina.jpeg" alt="amoxilina" />
+          <h2>amoxilina</h2>
+          <p class="volume">500ml</p>
+          <div class="pricing">
+            <span>1 Un. R$ 7,19</span>
+            <span class="bulk">6 Un. R$ 5,99 cada</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <img src="imagens/Diclofenaco.jpeg" alt="diclofenaco" />
+          <h2>Diclofenaco</h2>
+          <p class="volume">30 Comprimidos Revestidos</p>
+          <div class="pricing">
+            <span>1 Un. R$ 18,94</span>
+            <span class="bulk">2 Un. R$ 9,47 cada</span>
+            <span class="bulk">Leve mais pague menos</span>
+            <span class="bulk">So hoje</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <img src="imagens/Loratadina.jpeg" alt="Loratadina" />
+          <h2>Loratadina</h2>
+          <p class="volume">12 Comprimidos</p>
+          <div class="pricing">
+            <span class="old-price">R$ 21,04</span>
+            <span class="promo-price">R$ 3,49</span>
+            <span class="discount">-83%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card">
+          <img src="imagens/ibuprofeno.jpeg" alt="ibuprofeno" />
+          <h2>Ibuprofeno</h2>
+          <p class="volume">1 un</p>
+          <div class="pricing">
+            <span class="old-price">R$ 54,90</span>
+            <span class="promo-price">R$ 39,90</span>
+            <span class="discount">-27%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+           <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="badge">Leve + Pague –</div>
+          <img src="imagens/amoxilina.jpeg" alt="amoxilina" />
+          <h2>amoxilina</h2>
+          <p class="volume">500ml</p>
+          <div class="pricing">
+            <span>1 Un. R$ 7,19</span>
+            <span class="bulk">6 Un. R$ 5,99 cada</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <img src="imagens/Diclofenaco.jpeg" alt="diclofenaco" />
+          <h2>Diclofenaco</h2>
+          <p class="volume">30 Comprimidos Revestidos</p>
+          <div class="pricing">
+            <span>1 Un. R$ 18,94</span>
+            <span class="bulk">2 Un. R$ 9,47 cada</span>
+            <span class="bulk">Leve mais pague menos</span>
+            <span class="bulk">So hoje</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <img src="imagens/Loratadina.jpeg" alt="Loratadina" />
+          <h2>Loratadina</h2>
+          <p class="volume">12 Comprimidos</p>
+          <div class="pricing">
+            <span class="old-price">R$ 21,04</span>
+            <span class="promo-price">R$ 3,49</span>
+            <span class="discount">-83%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card">
+          <img src="imagens/ibuprofeno.jpeg" alt="ibuprofeno" />
+          <h2>Ibuprofeno</h2>
+          <p class="volume">1 un</p>
+          <div class="pricing">
+            <span class="old-price">R$ 54,90</span>
+            <span class="promo-price">R$ 39,90</span>
+            <span class="discount">-27%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+           <!-- Produto 1 -->
+        <article class="product-card">
+          <div class="badge">Leve + Pague –</div>
+          <img src="imagens/amoxilina.jpeg" alt="amoxilina" />
+          <h2>amoxilina</h2>
+          <p class="volume">500ml</p>
+          <div class="pricing">
+            <span>1 Un. R$ 7,19</span>
+            <span class="bulk">6 Un. R$ 5,99 cada</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card">
+          <img src="imagens/Diclofenaco.jpeg" alt="diclofenaco" />
+          <h2>Diclofenaco</h2>
+          <p class="volume">30 Comprimidos Revestidos</p>
+          <div class="pricing">
+            <span>1 Un. R$ 18,94</span>
+            <span class="bulk">2 Un. R$ 9,47 cada</span>
+            <span class="bulk">Leve mais pague menos</span>
+            <span class="bulk">So hoje</span>
+          </div>
+          <button class="buy-btn">Comprar</button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card">
+          <img src="imagens/Loratadina.jpeg" alt="Loratadina" />
+          <h2>Loratadina</h2>
+          <p class="volume">12 Comprimidos</p>
+          <div class="pricing">
+            <span class="old-price">R$ 21,04</span>
+            <span class="promo-price">R$ 3,49</span>
+            <span class="discount">-83%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card">
+          <img src="imagens/ibuprofeno.jpeg" alt="ibuprofeno" />
+          <h2>Ibuprofeno</h2>
+          <p class="volume">1 un</p>
+          <div class="pricing">
+            <span class="old-price">R$ 54,90</span>
+            <span class="promo-price">R$ 39,90</span>
+            <span class="discount">-27%</span>
+            <button class="buy-btn">Comprar</button>
+          </div>
+        </article>
+        
+      </section>
+    </div>
+  </main>
+</body>
+</html>

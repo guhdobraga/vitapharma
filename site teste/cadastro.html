@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro - VitaPharma</title>
+  <link rel="stylesheet" href="cadastro.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+.logo {
+  height: 100px;
+}
+
+.top-right span {
+   margin-top: 70px;
+     margin-left: 30px;
+     font-size: 14px;
+}
+
+.cadastro-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+
+.form-header button {
+   background-color: #1d6bb3;
+   color: #f3f3f3;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.btn-secundario {
+    background-color: #1d6bb3;
+    color: f3f3f3;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.genero .radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.genero label {
+  font-weight: normal;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="icons/pn.png" alt="VitaPharma" class="logo"></a>
+    <div class="top-right">
+      <span>Central de atendimento</span>
+    </div>
+  </header>
+
+  <main class="cadastro-container">
+    <div class="form-header">
+      <h2><a href="login.html"><button>Já tenho cadastro</button></a></h2>
+      <button class="btn-secundario">Fazer cadastro</button>
+    </div>
+    <form class="cadastro-form">
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" placeholder="Ex.: Joao Vitor Espinosa">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>CPF</label>
+          <input type="text" placeholder="000.000.000-00">
+        </div>
+
+        <div class="form-group">
+          <label>Celular</label>
+          <input type="text" placeholder="(00) 00000-0000">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Data de Nascimento</label>
+          <input type="text" placeholder="dd/mm/aaaa">
+        </div>
+
+        <div class="form-group genero">
+          <label>Gênero</label>
+          <div class="radio-group">
+            <label><input type="radio" name="genero"> Masculino</label>
+            <label><input type="radio" name="genero"> Feminino</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" placeholder="exemplo@exemplo.com.br">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" placeholder="Digite uma senha">
+        </div>
+
+        <div class="form-group">
+          <label>Confirmar Senha</label>
+          <input type="password" placeholder="Repita a senha">
+        </div>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
